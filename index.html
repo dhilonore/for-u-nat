@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Natasya Zalfa Zanzabillah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sky-blue: #87CEEB;
+            --grass-green: #7cfc00;
+            --dark-green: #2ecc71;
+            --accent-pink: #ff477e;
+            --trunk-brown: #8B4513;
+        }
+
+        body {
+            margin: 0; padding: 0; display: flex; justify-content: center;
+            align-items: center; min-height: 100vh;
+            background: linear-gradient(to bottom, #4facfe 0%, #87CEEB 100%);
+            font-family: 'Quicksand', sans-serif; overflow: hidden; position: relative;
+        }
+
+        /* Latar Belakang: Awan */
+        .clouds-container { position: absolute; top: 0; left: 0; width: 100%; height: 50%; z-index: 1; pointer-events: none; }
+        .cloud { position: absolute; background: white; border-radius: 100px; opacity: 0.8; animation: moveClouds linear infinite; }
+        .cloud::after, .cloud::before { content: ''; position: absolute; background: white; border-radius: 50%; }
+        .cloud::after { width: 50%; height: 140%; top: -60%; left: 15%; }
+        .cloud::before { width: 40%; height: 100%; top: -30%; left: 45%; }
+        @keyframes moveClouds { from { left: -250px; } to { left: 110vw; } }
+
+        /* Latar Belakang: Hutan Sawit Minimalis (4 Biji) */
+        .forest { position: absolute; bottom: 8vh; width: 100%; height: 150px; z-index: 3; pointer-events: none; }
+        .palm-tree { position: absolute; bottom: 0; transform-origin: bottom; animation: swayTree 4s ease-in-out infinite; }
+        .trunk { width: 12px; height: 80px; background: var(--trunk-brown); border-radius: 5px; margin: 0 auto; }
+        .leaves { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); }
+        .leaf { position: absolute; width: 50px; height: 15px; background: #27ae60; border-radius: 50%; transform-origin: left center; }
+        .leaf:nth-child(1) { transform: rotate(0deg); }
+        .leaf:nth-child(2) { transform: rotate(60deg); }
+        .leaf:nth-child(3) { transform: rotate(120deg); }
+        .leaf:nth-child(4) { transform: rotate(180deg); }
+        .leaf:nth-child(5) { transform: rotate(240deg); }
+        .leaf:nth-child(6) { transform: rotate(300deg); }
+        @keyframes swayTree { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }
+
+        /* Latar Belakang: Rumput */
+        .grass-container { position: absolute; bottom: 0; width: 100%; height: 10vh; display: flex; align-items: flex-end; z-index: 5; }
+        .blade { flex: 1; height: 100%; background: linear-gradient(to top, var(--dark-green), var(--grass-green)); border-radius: 50% 50% 0 0; transform-origin: bottom; animation: sway 3s ease-in-out infinite; }
+        @keyframes sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(4deg); } }
+
+        /* Kartu Pesan */
+        .card {
+            background: rgba(255, 255, 255, 0.96); padding: 30px; border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1), 8px 8px 0px #333; border: 4px solid #333;
+            text-align: center; max-width: 500px; width: 85%; position: relative; z-index: 10;
+            animation: floatCard 4s ease-in-out infinite;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes floatCard { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+        h1 { font-family: 'Fredoka One', cursive; color: var(--accent-pink); font-size: 1.8rem; margin-bottom: 10px; }
+        .text-content {
+            font-size: 0.95rem; color: #333; line-height: 1.6; text-align: left;
+            max-height: 350px; overflow-y: auto; padding: 15px;
+            background: rgba(240, 240, 240, 0.5); border-radius: 15px; font-weight: 600;
+        }
+        .text-content::-webkit-scrollbar { width: 6px; }
+        .text-content::-webkit-scrollbar-thumb { background: var(--accent-pink); border-radius: 10px; }
+
+        .btn {
+            margin-top: 20px; padding: 12px 30px; font-size: 1rem;
+            font-family: 'Fredoka One', cursive; background-color: var(--accent-pink);
+            color: white; border: 3px solid #333; border-radius: 50px;
+            cursor: pointer; box-shadow: 4px 4px 0px #333; transition: 0.2s;
+            text-decoration: none; display: inline-block;
+        }
+        .btn:active { box-shadow: 0px 0px 0px #333; transform: translate(2px, 2px); }
+
+        .fade-out { 
+            opacity: 0; 
+            transform: scale(0.5) rotate(-5deg); 
+            filter: blur(5px);
+            transition: all 0.4s ease-in;
+        }
+
+        .fade-in { 
+            animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3) translateY(100px); }
+            70% { transform: scale(1.1) translateY(-10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .emoji { font-size: 3rem; display: block; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="clouds-container" id="clouds"></div>
+    <div class="forest" id="palm-forest"></div>
+    <div class="grass-container" id="grass"></div>
+
+    <div class="card" id="card">
+        <div id="content">
+            <span class="emoji">🌤️</span>
+            <h1>For u Natasya Zalfa Zanzabillah!</h1>
+            <p style="font-size: 1.1rem; color: #555;">There’s something I’d like to tell you...</p>
+            <button class="btn" onclick="nextMessage()">Next</button>
+        </div>
+    </div>
+
+    <script>
+        const cloudCont = document.getElementById('clouds');
+        for (let i = 0; i < 12; i++) {
+            const cloud = document.createElement('div');
+            cloud.className = 'cloud';
+            cloud.style.width = (Math.random() * 100 + 80) + 'px';
+            cloud.style.height = '40px';
+            cloud.style.top = (Math.random() * 45) + '%';
+            cloud.style.left = (Math.random() * 100) + 'vw';
+            cloud.style.animationDuration = (Math.random() * 20 + 20) + 's';
+            cloud.style.animationDelay = (Math.random() * -20) + 's';
+            cloudCont.appendChild(cloud);
+        }
+
+        // Generate Hutan Sawit (Hanya 4 Biji)
+        const forest = document.getElementById('palm-forest');
+        const treePositions = [10, 25, 75, 90]; // Posisi persentase horizontal
+        for (let i = 0; i < treePositions.length; i++) {
+            const tree = document.createElement('div');
+            tree.className = 'palm-tree';
+            tree.style.left = treePositions[i] + '%';
+            
+            // Variasi skala acak untuk 4 pohon agar tidak kaku
+            const scale = 0.6 + Math.random() * 0.5;
+            tree.style.transform = `scale(${scale})`;
+            tree.style.zIndex = Math.floor(scale * 10);
+            tree.style.animationDelay = (Math.random() * 2) + 's';
+            
+            tree.innerHTML = `
+                <div class="leaves">
+                    <div class="leaf"></div><div class="leaf"></div><div class="leaf"></div>
+                    <div class="leaf"></div><div class="leaf"></div><div class="leaf"></div>
+                </div>
+                <div class="trunk"></div>
+            `;
+            forest.appendChild(tree);
+        }
+
+        const grassContainer = document.getElementById('grass');
+        for (let i = 0; i < 60; i++) {
+            const blade = document.createElement('div');
+            blade.className = 'blade';
+            blade.style.animationDelay = (Math.random() * 2) + 's';
+            grassContainer.appendChild(blade);
+        }
+
+        const messages = [
+            {
+                emoji: "💭",
+                title: "Orientasi",
+                text: "Kamu itu kayak kuas yang mulai mewarnai kanvas yang tadinya kosong. Hari yang biasa aja jadi nggak terlalu pucat lagi. Entah kenapa, ngobrol sama kamu bikin ada rasa tenang yang susah dijelasin kayak pelan-pelan hidupku dikasih warna yang pas.",
+                button: "Lanjut"
+            },
+            {
+                emoji: "💌",
+                title: "For U...",
+                text: "Kadang aku bingung mulai dari mana, karena perasaan ini nggak datang dengan suara keras. Dia tumbuh pelan-pelan, tanpa aku sadari, sampai akhirnya aku sadar kalau hampir setiap hal kecil selalu bikin aku kepikiran kamu. Cara kamu ngomong, cara kamu ketawa, bahkan cara kamu diam pun entah kenapa punya tempat sendiri di pikiranku.<br><br>Aku nggak tahu ini akan dibalas seperti apa, dan jujur aja ada takutnya wkwkw. Takut kalau aku terlalu jauh merasa, takut kalau ternyata kamu nggak ada di frekuensi yang sama. Tapi aku juga capek pura-pura biasa aja, pura-pura gatau aja seolah semua ini cuma hal sepele. Tapi buatku nggak sepele sih, jadi kepikiran mulu dari lama.<br><br>Bener sih kata lagu Ed Sheeran yang judulnya Thinking Out Loud yang bilang “how people fall in love in mysterious ways.” Kayanya aku bener-bener ada di lirik ini. Aku pun bingung kenapa bisa gini, dari awal aku suka gaya bicara kamu, cara becanda kamu, ditambah kita satu frekuensi, ditambah hobi kita sama persis. Aku pun heran kenapa kita punya banyak kesamaan, entah takdir atau gimana, atau mungkin ini Red String Theory?<br><br>Soalnya kita kan kenalan dari 2024 ya, pas itu kamu yang inisiatif duluan ngajak kenalan lewat bulan. Aku pas itu iya aja, gapapa, karena nggak enak juga kan sama Bulannya soalnya temennya sendiri gitu kan. Tapi bodohnya aku pas itu kalau kamu chat, aku acuh tak acuh banget balesnya seingetnya sendiri. Maaf ya kalau harus ketemu diriku yang pas itu, aku akuin kok dulu aku bodoh banget asli.<br><br>Tapi pas Desember kemaren, aku jujur iseng reply sg mu kamu karena iseng aja, Jujur niat aku pas itu mau minta maaf, cuma kayaknya maaf itu nggak terucap sampai sekarang, yaudah ku tuangin di sini aja ya. Eh, entah kenapa kok berawal dari iseng itu kita bisa sampai sedeket ini tuker cerita, ngobrol random, main bareng. Lucu juga kalau diinget wkwkwka kocak.<br><br>Eh, pada akhirnya malah aku yang feel harder, emm, apa mungkin ini yang dimaksud she feels first but he feels harder? Ya gatau dah wkwkw. Maaf ya aku gabisa ngungkapin lewat kata-kata, cuma bisa lewat tindakan. Kaya selalu ngeiyain kalau kamu ajak main/nobar dulu padahal ada keperluan juga, aku sempetin wkwkw. Bahkan dulu-dulu pas aku diajak voice sama temenku, aku lebih prioritasin kamu dibanding yang lain. Aku tau kesukaan kamu apa, makanya kadang aku suka inisiatif beliin. Maaf cuma bisa begini, karena jujur aku orangnya susah ngungkapin lewat kata-kata. Aku mah nggak romantis, nggak sejago Arya sama Tri soal beginian.<br><br>aku mau bilang <b>Ich mag dich sehr. Do you wanna be my Waguri, and I be your Rintaro?</b><br><br>Aku nggak mengharapkan jawaban yang sempurna. Aku cuma pengen kamu tahu kalau perasaanku tulus. Bukan karena kesepian, bukan karena kagum sesaat, tapi karena aku nyaman, merasa dihargai, dan jadi versi diriku yang lebih baik saat dekat kamu.<br><br>Dan aku tau kok aku nggak sempurna, aku tau kelebihan dan kekuranganku kaya gimana wkwkw. Kelebihanku, aku orangnya keliatan kalem, kadang slow respon kalo ada urusan atau lagi nggak fokus. Tapi kalau udah peduli sama seseorang, aku bakal serius dan hadir. Aku tipe yang dengerin, berusaha ngerti, dan kalau udah sayang ya tulus. Orangnya loyal asli, kalau udah sama kamu, nggak bakal mikirin yang lain. Aku orangnya berdasarkan perasaan banget; kalo ada hal yang nggak enak buat kamu, aku nggak bakal gengsi buat minta maaf.<br><br>Tapi aku juga banyak kurangnya. Suka banget overthinking, kadang terlalu mikirin perasaan orang sampai lupa diri sendiri, dan nggak selalu jago nunjukin perasaan secara langsung. Aku juga denial, suka nggak mau ngaku kalau dari awal aku suka ke kamu, lebih ke arah tsundere sih wkwkw, malu tapi mau. Aku nggak jago gombal, nggak jago ngerayu, nggak jago bikin kata-kata manis. Aku nggak mau pura-pura jadi orang lain, ini aku apa adanya.<br><br><b>Kalo kamu beneran sama aku aku harap kita kaya biasa aja kok gausah gila komunikasi yang 24/7 kaya orang-orang kalo pacaran cukup ngabarin udh cukup bagi aku, aku ga bakal ngekekang kamu, aku usahain aku ga bakal jadi beban buat kamu, pokoknya aku disini ada buat kamu dan kalo ada yg bisa ku lakuin bakal ku lakuin buat kamu, utamain dirimu baru diriku itu aja sih.</b><br><br><i style='display:block; text-align:center;'>- I was enchanted to meet you</i>",
+                button: "Selesai"
+            }
+        ];
+
+        let currentStep = 0;
+        function nextMessage() {
+            const card = document.getElementById('card');
+            const content = document.getElementById('content');
+            card.classList.add('fade-out');
+            
+            setTimeout(() => {
+                if (currentStep < messages.length) {
+                    const data = messages[currentStep];
+                    content.innerHTML = `
+                        <span class="emoji">${data.emoji}</span>
+                        <h1>${data.title}</h1>
+                        <div class="text-content">${data.text}</div>
+                        <button class="btn" onclick="nextMessage()">${data.button}</button>
+                    `;
+                    currentStep++;
+                } else {
+                    content.innerHTML = `
+                        <span class="emoji">🎶</span>
+                        <h1> | Makasih | 감사합니다 |<br> | Vielen Dank | ありがとう | </h1>
+                        <p style="font-weight:600; color: #444; margin-bottom: 20px;">Makasih sudah baca ini sampai habis yaaaa, keputusan akhir ada di kamu kok...</p>
+                        <a href="https://youtu.be/uyupd2PXbSQ?si=zlmyyWmiHXyWLkJe" target="_blank" class="btn">nih lagu buat kamu</a>
+                    `;
+                }
+                card.classList.remove('fade-out');
+                card.classList.add('fade-in');
+                setTimeout(() => card.classList.remove('fade-in'), 600);
+            }, 400);
+        }
+    </script>
+</body>
+</html>
