@@ -24,6 +24,7 @@
             touch-action: pan-y;
         }
 
+        /* Latar Belakang */
         .clouds-container { position: absolute; top: 0; left: 0; width: 100%; height: 50%; z-index: 1; pointer-events: none; }
         .cloud { position: absolute; background: white; border-radius: 100px; opacity: 0.8; animation: moveClouds linear infinite; }
         .cloud::after, .cloud::before { content: ''; position: absolute; background: white; border-radius: 50%; }
@@ -48,6 +49,7 @@
         .blade { flex: 1; height: 100%; background: linear-gradient(to top, var(--dark-green), var(--grass-green)); border-radius: 50% 50% 0 0; transform-origin: bottom; animation: sway 3s ease-in-out infinite; }
         @keyframes sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(4deg); } }
 
+        /* Kartu Pesan */
         .card {
             background: rgba(255, 255, 255, 0.96); padding: 25px; border-radius: 30px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1), 6px 6px 0px #333; border: 3.5px solid #333;
@@ -64,6 +66,8 @@
             background: rgba(240, 240, 240, 0.5); border-radius: 15px; font-weight: 600;
         }
         .text-center { text-align: center !important; }
+        .text-content::-webkit-scrollbar { width: 4px; }
+        .text-content::-webkit-scrollbar-thumb { background: var(--accent-pink); border-radius: 10px; }
 
         .btn {
             margin-top: 15px; padding: 12px 25px; font-size: 1rem;
@@ -72,10 +76,10 @@
             cursor: pointer; box-shadow: 4px 4px 0px #333; transition: 0.2s;
             text-decoration: none; display: inline-block;
         }
+        .btn:active { box-shadow: 0px 0px 0px #333; transform: translate(2px, 2px); }
 
         .fade-out { opacity: 0; transform: scale(0.5) rotate(-5deg); filter: blur(5px); transition: all 0.4s ease-in; }
         .fade-in { animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-
         @keyframes bounceIn {
             0% { opacity: 0; transform: scale(0.3) translateY(100px); }
             70% { transform: scale(1.1) translateY(-5px); }
@@ -86,8 +90,8 @@
 </head>
 <body>
 
-    <audio id="audio" loop>
-        <source src="https://cdn.pixabay.com/audio/2022/10/25/audio_277196020c.mp3" type="audio/mpeg">
+    <audio id="mySong" loop>
+        <source src="https://drive.google.com/uc?export=download&id=1X8kAGaEe4p_AWvD7Gf0OYADhots9g0aR" type="audio/mpeg">
     </audio>
 
     <div class="clouds-container" id="clouds"></div>
@@ -98,20 +102,21 @@
         <div id="content">
             <span class="emoji">🌤️</span>
             <h1>For u Natasya Zalfa Zanzabillah!</h1>
-            <p style="font-size: 1rem; color: #555;">Klik tombol di bawah buat denger suaranya...</p>
-            <button class="btn" onclick="startApp()">Mulai Sekarang ✨</button>
+            <p style="font-size: 1rem; color: #555;">Ada sesuatu yang mau aku bilang...</p>
+            <button class="btn" onclick="startApp()">Klik untuk Mulai ✨</button>
         </div>
     </div>
 
     <script>
         function startApp() {
-            const audio = document.getElementById("audio");
-            audio.volume = 0.5; // Set volume ke 50%
-            audio.play().catch(e => console.log("Gagal putar:", e));
+            var audio = document.getElementById("mySong");
+            audio.play().catch(function(error) {
+                console.log("Musik butuh interaksi klik untuk berputar.");
+            });
             nextMessage();
         }
 
-        // Animasi Latar
+        // Animasi Lingkungan (Awan, Pohon, Rumput)
         const cloudCont = document.getElementById('clouds');
         for (let i = 0; i < 8; i++) {
             const cloud = document.createElement('div');
