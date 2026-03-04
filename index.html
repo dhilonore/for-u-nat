@@ -24,10 +24,6 @@
             touch-action: pan-y;
         }
 
-        /* Video Hidden Container */
-        #player { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-
-        /* Latar Belakang */
         .clouds-container { position: absolute; top: 0; left: 0; width: 100%; height: 50%; z-index: 1; pointer-events: none; }
         .cloud { position: absolute; background: white; border-radius: 100px; opacity: 0.8; animation: moveClouds linear infinite; }
         .cloud::after, .cloud::before { content: ''; position: absolute; background: white; border-radius: 50%; }
@@ -68,8 +64,6 @@
             background: rgba(240, 240, 240, 0.5); border-radius: 15px; font-weight: 600;
         }
         .text-center { text-align: center !important; }
-        .text-content::-webkit-scrollbar { width: 4px; }
-        .text-content::-webkit-scrollbar-thumb { background: var(--accent-pink); border-radius: 10px; }
 
         .btn {
             margin-top: 15px; padding: 12px 25px; font-size: 1rem;
@@ -78,10 +72,10 @@
             cursor: pointer; box-shadow: 4px 4px 0px #333; transition: 0.2s;
             text-decoration: none; display: inline-block;
         }
-        .btn:active { box-shadow: 0px 0px 0px #333; transform: translate(2px, 2px); }
 
         .fade-out { opacity: 0; transform: scale(0.5) rotate(-5deg); filter: blur(5px); transition: all 0.4s ease-in; }
         .fade-in { animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+
         @keyframes bounceIn {
             0% { opacity: 0; transform: scale(0.3) translateY(100px); }
             70% { transform: scale(1.1) translateY(-5px); }
@@ -92,7 +86,9 @@
 </head>
 <body>
 
-    <div id="player"></div>
+    <audio id="audio" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/10/25/audio_277196020c.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="clouds-container" id="clouds"></div>
     <div class="forest" id="palm-forest"></div>
@@ -102,36 +98,16 @@
         <div id="content">
             <span class="emoji">🌤️</span>
             <h1>For u Natasya Zalfa Zanzabillah!</h1>
-            <p style="font-size: 1rem; color: #555;">There’s something I’d like to tell you...</p>
-            <button class="btn" onclick="startEverything()">Next</button>
+            <p style="font-size: 1rem; color: #555;">Klik tombol di bawah buat denger suaranya...</p>
+            <button class="btn" onclick="startApp()">Mulai Sekarang ✨</button>
         </div>
     </div>
 
     <script>
-        // YouTube Player API
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '0',
-                width: '0',
-                videoId: 'cMPEH79Kk70', // Video ID: Message In A Bottle
-                playerVars: {
-                    'autoplay': 0,
-                    'controls': 0
-                }
-            });
-        }
-
-        function startEverything() {
-            if (player && player.playVideo) {
-                player.unMute();
-                player.playVideo();
-            }
+        function startApp() {
+            const audio = document.getElementById("audio");
+            audio.volume = 0.5; // Set volume ke 50%
+            audio.play().catch(e => console.log("Gagal putar:", e));
             nextMessage();
         }
 
