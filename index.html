@@ -91,6 +91,13 @@
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
         .emoji { font-size: 2.5rem; display: block; margin-bottom: 5px; }
+        
+        /* Gaya khusus untuk pesan terakhir */
+        .closing-text {
+            font-size: 0.85rem; color: #444; line-height: 1.5; 
+            margin: 15px 0; background: rgba(255, 255, 255, 0.5); 
+            padding: 10px; border-radius: 15px; border: 1px dashed var(--accent-pink);
+        }
     </style>
 </head>
 <body>
@@ -117,7 +124,6 @@
             nextMessage();
         }
 
-        // Animasi Latar
         const cloudCont = document.getElementById('clouds');
         for (let i = 0; i < 8; i++) {
             const cloud = document.createElement('div');
@@ -184,22 +190,21 @@
                     `;
                     currentStep++;
                 } else {
-                    // Berhentikan lagu latar
                     document.getElementById("mySong").pause();
-
                     content.innerHTML = `
                         <span class="emoji">🎶</span>
                         <h1 style="font-size:1.1rem">| Makasih | 감사합니다 |<br>| Vielen Dank | ありがとう |</h1>
-                        <p style="font-weight:600; color: #444; margin: 15px 0; font-size: 0.9rem;">
-                            Makasih sudah baca ini sampai habis yaaaa, Sebenarnya aku sudah cukup tahu apa jawabanmu. Kalau ternyata memang bukan seperti yang aku harapkan, aku harap kita tetap bisa berinteraksi seperti biasa. Anggap saja ini cuma aku yang jujur tentang perasaanku, tanpa harus mengubah apa pun di antara kita. Aku tetap menghargai kamu seperti sebelumnya. Kalau suatu saat kamu butuh bantuan atau apa pun, bilang aja yaa aku akan dengan senang hati bantu. Tapi keputusan akhirnya tetap ada di kamu kok....
-                        </p>
-                        <p style="font-size: 0.95rem; font-weight: bold; color: var(--accent-pink);">nih ada lagu buat kamu :)</p>
+                        <div class="closing-text">
+                            Makasih sudah baca ini sampai habis yaaaa, Sebenarnya aku sudah cukup tahu apa jawabanmu. Kalau ternyata memang bukan seperti yang aku harapkan, aku harap kita tetap bisa berinteraksi seperti biasa. Anggap saja ini cuma aku yang jujur tentang perasaanku. Keputusan akhirnya tetap ada di kamu kok....
+                        </div>
+                        <p style="font-size: 0.95rem; font-weight: bold; color: var(--accent-pink); margin-bottom: 5px;">nih ada video buat kamu :)</p>
                         <div class="video-container">
                             <video id="finalVideo" controls autoplay playsinline>
                                 <source src="video.mp4" type="video/mp4">
                                 Browser kamu tidak mendukung video.
                             </video>
                         </div>
+                        <p style="font-size: 0.8rem; font-style: italic; color: #777; margin-top: 15px;">- anything you want</p>
                     `;
                 }
                 card.classList.remove('fade-out');
@@ -210,10 +215,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
