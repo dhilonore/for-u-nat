@@ -190,7 +190,7 @@
                             Sebenarnya aku sudah cukup tahu apa jawabanmu. Kalau ternyata memang bukan seperti yang aku harapkan, aku harap kita tetap bisa berinteraksi seperti biasa. Anggap saja ini cuma aku yang jujur tentang perasaanku, tanpa harus mengubah apa pun di antara kita. Aku tetap menghargai kamu seperti sebelumnya. Kalau suatu saat kamu butuh bantuan atau apa pun, bilang saja ya aku akan dengan senang hati membantu. Tapi keputusan akhirnya tetap ada di kamu kok.
                         </div>
                         <p class="italic-note">- anything you want</p>
-                        <button class="btn" onclick="playVideoPage()">nih ada video buat kamu :) ✨</button>
+                        <button class="btn" onclick="playSongPage()">nih ada lagu buat kamu :) ✨</button>
                     `;
                 } else {
                     document.getElementById("mySong").pause();
@@ -212,7 +212,7 @@
             }, 400);
         }
 
-        function playVideoPage() {
+        function playSongPage() {
             const card = document.getElementById('card');
             const content = document.getElementById('content');
             card.classList.add('fade-out');
@@ -221,8 +221,8 @@
                 document.getElementById("mySong").pause();
                 content.innerHTML = `
                     <button class="back-arrow" onclick="finalPage('yes')">←</button>
-                    <span class="emoji">📽️</span>
-                    <h1>Video for You</h1>
+                    <span class="emoji">🎵</span>
+                    <h1>Song for You</h1>
                     <div class="video-container">
                         <video id="finalVideo" controls autoplay playsinline><source src="video.mp4" type="video/mp4"></video>
                     </div>
@@ -245,7 +245,7 @@
             }, 400);
         }
 
-        // Animasi Latar
+        // Animasi Lingkungan
         const cloudCont = document.getElementById('clouds');
         for (let i = 0; i < 6; i++) {
             const cloud = document.createElement('div');
