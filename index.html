@@ -61,7 +61,7 @@
         }
         @keyframes floatCard { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        /* Tombol Back Panah di Atas Kiri */
+        /* Tombol Back Panah */
         .back-arrow {
             position: absolute; top: 15px; left: 15px; font-size: 1.5rem;
             color: #333; cursor: pointer; transition: 0.2s; z-index: 20;
@@ -174,9 +174,9 @@
             
             setTimeout(() => {
                 if (currentStep === 1) {
-                    location.reload(); // Balik ke cover awal
+                    location.reload(); 
                 } else if (currentStep === 2) {
-                    currentStep = 0; // Balik ke Orientasi
+                    currentStep = 0; 
                     nextMessage();
                 }
             }, 400);
@@ -188,10 +188,11 @@
             card.classList.add('fade-out');
             
             setTimeout(() => {
-                document.getElementById("mySong").pause();
+                // Jangan pause musik agar Taylor Swift tetap nyala jika di-back
                 if (choice === 'yes') {
+                    document.getElementById("mySong").pause();
                     content.innerHTML = `
-                        <button class="back-arrow" onclick="location.reload()">←</button>
+                        <button class="back-arrow" onclick="backToForU()">←</button>
                         <span class="emoji">💖</span>
                         <h1 style="font-size:1rem"> Vielen Dank‎ ‎ ‎ | ‎ ‎ ‎ 月が綺麗ですね? </h1>
                         <div class="closing-text">
@@ -205,7 +206,7 @@
                     `;
                 } else {
                     content.innerHTML = `
-                        <button class="back-arrow" onclick="location.reload()">←</button>
+                        <button class="back-arrow" onclick="backToForU()">←</button>
                         <span class="emoji">🍃</span>
                         <h1>I Understand...</h1>
                         <div class="closing-text">
@@ -219,6 +220,19 @@
                 card.classList.remove('fade-out');
                 card.classList.add('fade-in');
                 setTimeout(() => card.classList.remove('fade-in'), 600);
+            }, 400);
+        }
+
+        // Fungsi baru untuk balik ke halaman For U
+        function backToForU() {
+            const card = document.getElementById('card');
+            card.classList.add('fade-out');
+            
+            setTimeout(() => {
+                // Memulai kembali musik latar jika sempat berhenti
+                document.getElementById("mySong").play();
+                currentStep = 1; // Set ke posisi sebelum "For U"
+                nextMessage();   // Render halaman "For U"
             }, 400);
         }
 
