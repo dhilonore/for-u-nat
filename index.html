@@ -76,7 +76,6 @@
             max-height: 260px; overflow-y: auto; padding: 10px;
             background: rgba(240, 240, 240, 0.5); border-radius: 15px; font-weight: 600;
         }
-        /* Custom Scrollbar agar tetap imut */
         .text-content::-webkit-scrollbar { width: 5px; }
         .text-content::-webkit-scrollbar-thumb { background: var(--accent-pink); border-radius: 10px; }
 
@@ -106,7 +105,6 @@
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
         
-        /* Gaya khusus untuk scroll teks di halaman Yes/No */
         .closing-text { 
             font-size: 0.8rem; color: #444; line-height: 1.5; margin: 8px 0; 
             text-align: justify; max-height: 200px; overflow-y: auto; 
@@ -119,6 +117,12 @@
         .emoji { font-size: 2rem; display: block; margin-bottom: 5px; }
         
         .message-footer { font-size: 0.75rem; font-style: italic; color: #666; text-align: left; margin-top: 15px; display: block; }
+
+        /* Style Foto Bunga */
+        .flower-img {
+            width: 100px; height: 100px; object-fit: contain;
+            margin: 0 auto 10px auto; display: block;
+        }
     </style>
 </head>
 <body>
@@ -202,7 +206,7 @@
                         <span class="emoji">💖</span>
                         <h1 style="font-size:1rem"> Vielen Dank‎ ‎ ‎ | ‎ ‎ ‎ 月が綺麗ですね? </h1>
                         <div class="closing-text">
-                            Makasih ya kalau kamu benar-benar nerima aku apa adanya. Aku senang banget dengarnya. Kalau kita memang sama-sama jalanin ini, aku pengennya tetap seperti biasa aja, nggak harus komunikasi 24/7 kayak kebanyakan orang pacaran. Cukup saling ngabarin aja itu sudah cukup buat aku. Aku juga nggak mau ngekekang kamu. Aku bakal berusaha supaya nggak jadi beban buat kamu, dan aku bakal support kamu dalam hal apapun yang bisa aku bantu. Yang penting kamu tetap bisa jadi diri kamu sendiri. Aku di sini ada buat kamu, dan kalau ada hal yang bisa aku lakuin buat kamu, aku bakal dengan senang hati ngelakuinnya. Buat aku, kamu juga boleh selalu utamain dirimu dulu. Dan satu hal yang pasti, aku serius, nggak main-main sama perasaanku ini. Sebenarnya alasan aku belum pernah pacaran sampai sekarang bukan karena nggak bisa, tapi lebih karena prinsipku dari dulu. Aku juga orangnya nggak suka hubungan yang saling mengekang. Aku sering lihat orang di sekitarku pacaran harus selalu intens chat terus, tapi nggak lama malah jadi asing. kaya fungsinya apasih udah korbanin waktu banyak-banyak kalo ujungnya gitu, Makanya aku selalu mikir, mungkin agak susah cari orang yang pemikirannya mirip sama aku. Kadang orang bilang standarku ketinggian, tapi menurutku nggak juga. Buat aku cukup nemu orang yang nyambung dan cocok itu sudah cukup Dan jujur, aku pilih kamu karena aku ngerasa kamu memenuhi itu semua. Yang aku harap, kalau kita jalanin ini, kita jalanin dengan cara yang dewasa, bukan yang kebocah-bocahan.
+                            Makasih ya kalau kamu benar-benar nerima aku apa adanya. Aku seneng dengernya. Kalau kita memang sama-sama jalanin ini, aku pengennya tetap seperti biasa aja. Nggak harus komunikasi 24/7 kayak kebanyakan orang pacaran, cukup saling ngabarin aja itu udah cukup buat aku. Aku juga nggak mau ngekekang kamu. Aku bakal berusaha supaya nggak jadi beban buat kamu, dan aku bakal support kamu dalam hal apa pun yang bisa aku bantu. Yang penting kamu tetap bisa jadi diri kamu sendiri. Aku di sini ada buat kamu, dan kalau ada hal yang bisa aku lakuin buat kamu, aku bakal dengan senang hati ngelakuinnya. Buat aku, kamu juga boleh selalu utamain dirimu dulu. Dan satu hal yang pasti, aku serius, nggak main-main sama perasaanku ini. Sebenarnya alasan aku belum pernah pacaran sampai sekarang bukan karena nggak bisa, tapi lebih karena prinsipku dari dulu. Aku juga orangnya nggak suka hubungan yang saling mengekang. Aku sering lihat orang di sekitarku pacaran harus selalu intens chat terus, tapi nggak lama malah jadi asing. kaya fungsinya apasih udah korbanin waktu banyak-banyak kalo ujungnya gitu, Makanya aku selalu mikir, mungkin agak susah cari orang yang pemikirannya mirip sama aku. Kadang orang bilang standarku ketinggian, tapi menurutku nggak juga. Buat aku cukup nemu orang yang nyambung dan cocok itu sudah cukup Dan jujur, aku pilih kamu karena aku ngerasa kamu memenuhi itu semua. Yang aku harap, kalau kita jalanin ini, kita jalanin dengan cara yang dewasa, bukan yang kebocah-bocahan.
                         </div>
                         <p class="italic-note">- Can I go where you go? or can we always be this close forever and ever?</p>
                         <button class="btn" onclick="playSongPage()">nih ada lagu buat kamu :) ✨</button>
@@ -241,6 +245,31 @@
                         <video id="finalVideo" controls autoplay playsinline><source src="video.mp4" type="video/mp4"></video>
                     </div>
                     <p style="font-size: 0.8rem; margin-top: 15px; color: #555; font-weight: 600;">This song represents how I feel about you.</p>
+                    <button class="btn" style="background-color: var(--accent-pink); font-size: 0.8rem;" onclick="playPoemPage()">a beautiful poem for you ✨</button>
+                `;
+                card.classList.remove('fade-out');
+                card.classList.add('fade-in');
+                setTimeout(() => card.classList.remove('fade-in'), 600);
+            }, 400);
+        }
+
+        function playPoemPage() {
+            const card = document.getElementById('card');
+            const content = document.getElementById('content');
+            card.classList.add('fade-out');
+
+            setTimeout(() => {
+                content.innerHTML = `
+                    <button class="back-arrow" onclick="playSongPage()">←</button>
+                    <img src="flower.png" class="flower-img" alt="Flower">
+                    <h1 style="font-size: 1.1rem;">Three Gerbera Flowers</h1>
+                    <div class="closing-text" style="font-style: normal;">
+                        I didn’t come with a perfect poem. I only bring three gerbera flowers because maybe flowers can explain my feelings better than words I sometimes struggle to say.<br><br>
+                        <b>The first flower</b> is about a simple beginning. Two people met in a normal way, without expecting anything special. At first, we were just two people who happened to know each other. But as time slowly passed, small conversations began to feel warmer. Little moments slowly turned into something meaningful without us even noticing.<br><br>
+                        <b>The second flower</b> is about a coincidence that slowly felt like fate. Nights passed with long conversations that never seemed to run out. We laughed at simple things and shared random stories. Somehow, we discovered that we had many similarities, like two people walking on different roads that eventually led to the same place. At that moment, I started to realize that your presence made my days feel lighter.<br><br>
+                        <b>The third flower</b> is about a small courage that finally grew in my heart. The courage to be honest. This feeling didn’t appear suddenly. It grew slowly from small attention, from comfort that is hard to explain, and from a quiet wish to care for someone without trying to hold them too tightly.<br><br>
+                        I’m not here to make big promises. I only hope to be someone who can stand beside you without making you feel pressured or tied down.
+                    </div>
                     <button class="btn" style="background-color: #95a5a6; font-size: 0.8rem;" onclick="location.reload()">Back to Start</button>
                 `;
                 card.classList.remove('fade-out');
@@ -259,6 +288,7 @@
             }, 400);
         }
 
+        /* Animasi Latar Tetap Utuh */
         const cloudCont = document.getElementById('clouds');
         for (let i = 0; i < 6; i++) {
             const cloud = document.createElement('div');
@@ -293,9 +323,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
